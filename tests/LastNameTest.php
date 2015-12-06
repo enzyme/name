@@ -4,20 +4,20 @@ use Enzyme\Name;
 
 class LastNameTest extends PHPUnit_Framework_TestCase
 {
-    public function testGetLastNameFromDefaultConstructor()
+    public function testGetLastNameFromArgsConstructor()
     {
         $expected = 'Bar';
 
-        $name = new Name('Foo', 'Bar');
+        $name = Name::fromArgs('Foo', 'Bar');
 
         $this->assertEquals($expected, $name->last());
     }
 
-    public function testGetLastNameFromDefaultConstructorWithMiddleName()
+    public function testGetLastNameFromArrayConstructor()
     {
         $expected = 'Bar';
 
-        $name = new Name('Foo', 'Hubert', 'Bar');
+        $name = Name::fromArray(['Foo', 'Bar']);
 
         $this->assertEquals($expected, $name->last());
     }
@@ -31,11 +31,29 @@ class LastNameTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $name->last());
     }
 
-    public function testGetLastNameFromStringConstructorWithMiddleName()
+    public function testGetNonexistentLastNameFromArgsConstructor()
     {
-        $expected = 'Bar';
+        $expected = null;
 
-        $name = Name::fromString('Foo Hubert Bar');
+        $name = Name::fromArgs('Foo');
+
+        $this->assertEquals($expected, $name->last());
+    }
+
+    public function testGetNonexistentLastNameFromArrayConstructor()
+    {
+        $expected = null;
+
+        $name = Name::fromArray(['Foo']);
+
+        $this->assertEquals($expected, $name->last());
+    }
+
+    public function testGetLastNonexistentNameFromStringConstructor()
+    {
+        $expected = null;
+
+        $name = Name::fromString('Foo');
 
         $this->assertEquals($expected, $name->last());
     }

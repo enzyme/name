@@ -4,20 +4,20 @@ use Enzyme\Name;
 
 class FirstNameTest extends PHPUnit_Framework_TestCase
 {
-    public function testGetFirstNameFromDefaultConstructor()
+    public function testGetFirstNameFromArgsConstructor()
     {
         $expected = 'Foo';
 
-        $name = new Name('Foo', 'Bar');
+        $name = Name::fromArgs('Foo', 'Bar');
 
         $this->assertEquals($expected, $name->first());
     }
 
-    public function testGetFirstNameFromDefaultConstructorWithMiddleName()
+    public function testGetFirstNameFromArrayConstructor()
     {
         $expected = 'Foo';
 
-        $name = new Name('Foo', 'Hubert', 'Bar');
+        $name = Name::fromArray(['Foo', 'Bar']);
 
         $this->assertEquals($expected, $name->first());
     }
@@ -27,15 +27,6 @@ class FirstNameTest extends PHPUnit_Framework_TestCase
         $expected = 'Foo';
 
         $name = Name::fromString('Foo Bar');
-
-        $this->assertEquals($expected, $name->first());
-    }
-
-    public function testGetFirstNameFromStringConstructorWithMiddleName()
-    {
-        $expected = 'Foo';
-
-        $name = Name::fromString('Foo Hubert Bar');
 
         $this->assertEquals($expected, $name->first());
     }
