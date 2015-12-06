@@ -1,0 +1,29 @@
+{
+    "name": "enzyme/name",
+    "type": "library",
+    "description": "Name manipulation library for PHP.",
+    "keywords": ["enzyme","name","manipulation","php"],
+    "homepage": "https://github.com/enzyme/name",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tristan Strathearn",
+            "email": "r3oath@protonmail.ccom",
+            "homepage": "https://github.com/r3oath",
+            "role": "Full Stack Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Enzyme\\Name\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "mockery/mockery": "^0.9.4",
+        "satooshi/php-coveralls": "^0.6.1"
+    }
+}

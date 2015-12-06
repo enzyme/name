@@ -1,2 +1,2 @@
-# name
-Making short work of someone's name.
+# Name
+Name manipulation library for PHP.
