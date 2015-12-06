@@ -1,66 +1,90 @@
 <?php
 
-use Enzyme\Name;
+use Enzyme\Name\Lang\En as Name;
 
 class MiddleNameTest extends PHPUnit_Framework_TestCase
 {
     public function testGetMiddleFromArgsConstructor()
     {
-        $expected = 'Hubert';
-        $name = Name::fromArgs('Foo', 'Hubert', 'Bar');
-        $this->assertEquals($expected, $name->middle());
+        $shorten = true;
 
-        $expected = 'Hubert Cumberdale';
-        $name = Name::fromArgs('Foo', 'Hubert', 'Cumberdale', 'Bar');
+        $name = Name::fromArgs('Foo', 'Hubert', 'Bar');
+        $expected = 'Hubert';
         $this->assertEquals($expected, $name->middle());
+        $expected = 'H.';
+        $this->assertEquals($expected, $name->middle($shorten));
+
+        $name = Name::fromArgs('Foo', 'Hubert', 'Cumberdale', 'Bar');
+        $expected = 'Hubert Cumberdale';
+        $this->assertEquals($expected, $name->middle());
+        $expected = 'H. C.';
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 
     public function testGetMiddleFromArrayConstructor()
     {
-        $expected = 'Hubert';
-        $name = Name::fromArray(['Foo', 'Hubert', 'Bar']);
-        $this->assertEquals($expected, $name->middle());
+        $shorten = true;
 
-        $expected = 'Hubert Cumberdale';
-        $name = Name::fromArray(['Foo', 'Hubert', 'Cumberdale', 'Bar']);
+        $name = Name::fromArray(['Foo', 'Hubert', 'Bar']);
+        $expected = 'Hubert';
         $this->assertEquals($expected, $name->middle());
+        $expected = 'H.';
+        $this->assertEquals($expected, $name->middle($shorten));
+
+        $name = Name::fromArray(['Foo', 'Hubert', 'Cumberdale', 'Bar']);
+        $expected = 'Hubert Cumberdale';
+        $this->assertEquals($expected, $name->middle());
+        $expected = 'H. C.';
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 
     public function testGetMiddleFromStringConstructor()
     {
-        $expected = 'Hubert';
-        $name = Name::fromString('Foo Hubert Bar');
-        $this->assertEquals($expected, $name->middle());
+        $shorten = true;
 
-        $expected = 'Hubert Cumberdale';
-        $name = Name::fromString('Foo Hubert Cumberdale Bar');
+        $name = Name::fromString('Foo Hubert Bar');
+        $expected = 'Hubert';
         $this->assertEquals($expected, $name->middle());
+        $expected = 'H.';
+        $this->assertEquals($expected, $name->middle($shorten));
+
+        $name = Name::fromString('Foo Hubert Cumberdale Bar');
+        $expected = 'Hubert Cumberdale';
+        $this->assertEquals($expected, $name->middle());
+        $expected = 'H. C.';
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 
     public function testGetNonexistentMiddleFromArgsConstructor()
     {
+        $shorten = true;
         $expected = null;
 
         $name = Name::fromArgs('Foo');
 
         $this->assertEquals($expected, $name->middle());
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 
     public function testGetNonexistentMiddleFromArrayConstructor()
     {
+        $shorten = true;
         $expected = null;
 
         $name = Name::fromArray(['Foo']);
 
         $this->assertEquals($expected, $name->middle());
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 
     public function testGetLastNonexistentNameFromStringConstructor()
     {
+        $shorten = true;
         $expected = null;
 
         $name = Name::fromString('Foo');
 
         $this->assertEquals($expected, $name->middle());
+        $this->assertEquals($expected, $name->middle($shorten));
     }
 }

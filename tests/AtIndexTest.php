@@ -1,6 +1,6 @@
 <?php
 
-use Enzyme\Name;
+use Enzyme\Name\Lang\En as Name;
 
 class AtIndexTest extends PHPUnit_Framework_TestCase
 {
