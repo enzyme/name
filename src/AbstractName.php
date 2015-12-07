@@ -18,7 +18,7 @@ abstract class AbstractName implements NameInterface
      */
     private function __construct($parts)
     {
-        $this->nameStack = $parts;
+        $this->nameStack = $this->removeUnwantedWhitespace($parts);
     }
 
     /**
@@ -141,5 +141,20 @@ abstract class AbstractName implements NameInterface
     protected function shorten($part)
     {
         return substr($part, 0, 1) . '.';
+    }
+
+    /**
+     * Walks over the array and returns a copy with all unwanted
+     * whitespace stripped out.
+     *
+     * @param array $parts The array to process.
+     *
+     * @return array
+     */
+    protected function removeUnwantedWhitespace($parts)
+    {
+        return array_values(array_filter($parts, function($part) {
+            return strlen(trim($part)) > 0;
+        }));
     }
 }
