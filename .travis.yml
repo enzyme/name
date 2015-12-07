@@ -12,5 +12,4 @@ script:
   - php vendor/bin/phpunit -c phpunit.xml
 
 after_script:
-  - travis_retry php vendor/bin/coveralls
   - travis_retry php vendor/bin/coveralls -v
