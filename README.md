@@ -14,7 +14,7 @@ composer require enzyme/name
 ```php
 use Enzyme\Name\Lang\En as Name;
 
-$name = new Name::fromString('Hubert Cumberdale');
+$name = Name::fromString('Hubert Cumberdale');
 
 echo $name->first(); // Will echo 'Hubert'.
 echo $name->last(); // Will echo 'Cumberdale'.
@@ -26,7 +26,7 @@ echo $name->last(); // Will echo 'Cumberdale'.
 use Enzyme\Name\Formatter;
 use Enzyme\Name\Lang\En as Name;
 
-$name = new Name::fromString('Hubert Cumberdale');
+$name = Name::fromString('Hubert Cumberdale');
 
 $fmt = new Formatter($name);
 echo $fmt->like('First L.'); // Will echo 'Hubert C.'
