@@ -24,7 +24,11 @@ class Formatter implements FormatInterface
         $final_fmt = [];
 
         foreach ($fmt_parts as $part) {
-            $final_fmt[] = $this->format($part);
+            $formatted_string = $this->format($part);
+
+            if($formatted_string !== null) {
+                $final_fmt[] = $formatted_string;
+            }
         }
 
         return implode(' ', $final_fmt);
@@ -32,29 +36,41 @@ class Formatter implements FormatInterface
 
     protected function format($string)
     {
-        $short = true;
+        if(strlen(trim($string)) < 1) {
+            return null;
+        }
 
+        $short = true;
         switch (substr($string, 0, 2)) {
             case 'Fi':
-                return str_replace('First', $this->name->first(), $string);
+                return $this->attemptFormat('First', $this->name->first(), $string);
 
             case 'F.':
-                return str_replace('F.', $this->name->first($short), $string);
+                return $this->attemptFormat('F.', $this->name->first($short), $string);
 
             case 'La':
-                return str_replace('Last', $this->name->last(), $string);
+                return $this->attemptFormat('Last', $this->name->last(), $string);
 
             case 'L.':
-                return str_replace('L.', $this->name->last($short), $string);
+                return $this->attemptFormat('L.', $this->name->last($short), $string);
 
             case 'Mi':
-                return str_replace('Middle', $this->name->middle(), $string);
+                return $this->attemptFormat('Middle', $this->name->middle(), $string);
 
             case 'M.':
-                return str_replace('M.', $this->name->middle($short), $string);
+                return $this->attemptFormat('M.', $this->name->middle($short), $string);
 
             default:
-                return $string;
+                return trim($string);
         }
+    }
+
+    protected function attemptFormat($needle, $name, $string)
+    {
+        if($name === null || strlen($name) < 1) {
+            return null;
+        }
+
+        return str_replace($needle, $name, $string);
     }
 }
