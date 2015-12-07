@@ -65,44 +65,14 @@ abstract class AbstractName implements NameInterface
     abstract public function first($short = false);
 
     /**
-     * A shorthand for first(true).
-     *
-     * @return string
-     */
-    public function shortFirst()
-    {
-        return $this->first(true);
-    }
-
-    /**
      * {@inheritdoc}
      */
     abstract public function middle($short = false);
 
     /**
-     * A shorthand for middle(true).
-     *
-     * @return string
-     */
-    public function shortMiddle()
-    {
-        return $this->middle(true);
-    }
-
-    /**
      * {@inheritdoc}
      */
     abstract public function last($short = false);
-
-    /**
-     * A shorthand for last(true).
-     *
-     * @return string
-     */
-    public function shortLast()
-    {
-        return $this->last(true);
-    }
 
     /**
      * {@inheritdoc}
