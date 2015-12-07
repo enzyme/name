@@ -39,4 +39,16 @@ class FirstNameTest extends PHPUnit_Framework_TestCase
         $expected = 'F.';
         $this->assertEquals($expected, $name->first($shorten));
     }
+
+    public function testGetFirstNameFromStringConstructorOddSpacing()
+    {
+        $shorten = true;
+        $name = Name::fromString(' Foo  Bar ');
+
+        $expected = 'Foo';
+        $this->assertEquals($expected, $name->first());
+
+        $expected = 'F.';
+        $this->assertEquals($expected, $name->first($shorten));
+    }
 }

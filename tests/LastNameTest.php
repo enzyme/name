@@ -72,4 +72,13 @@ class LastNameTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $name->last());
         $this->assertEquals($expected, $name->last($shorten));
     }
+
+    public function testGetLastNameFromStringConstructorOddSpacing()
+    {
+        $expected = 'Bar';
+
+        $name = Name::fromString(' Foo  Bar ');
+
+        $this->assertEquals($expected, $name->last());
+    }
 }

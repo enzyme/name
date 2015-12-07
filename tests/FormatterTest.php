@@ -147,4 +147,26 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $formatter->like('Last, F. M.'));
         $this->assertEquals($expected, Formatter::nameLike($name, 'Last, F. M.'));
     }
+
+    public function testFullNameFormatMixedAlternateStructureVariant()
+    {
+        $expected = 'Cumberdale - H. A. S.';
+
+        $name = Name::fromString('Hubert Alfred Smith Cumberdale');
+        $formatter = new Formatter($name);
+
+        $this->assertEquals($expected, $formatter->like('Last - F. M.'));
+        $this->assertEquals($expected, Formatter::nameLike($name, 'Last - F. M.'));
+    }
+
+    public function testFullNameFormatMixedAlternateStructureVariantOddSpacing()
+    {
+        $expected = 'Cumberdale  -  H. A. S.';
+
+        $name = Name::fromString('Hubert Alfred Smith Cumberdale');
+        $formatter = new Formatter($name);
+
+        $this->assertEquals($expected, $formatter->like('Last  -  F. M.'));
+        $this->assertEquals($expected, Formatter::nameLike($name, 'Last  -  F. M.'));
+    }
 }

@@ -55,6 +55,23 @@ class MiddleNameTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $name->middle($shorten));
     }
 
+    public function testGetMiddleFromStringConstructorOddSpacing()
+    {
+        $shorten = true;
+
+        $name = Name::fromString(' Foo  Hubert  Bar ');
+        $expected = 'Hubert';
+        $this->assertEquals($expected, $name->middle());
+        $expected = 'H.';
+        $this->assertEquals($expected, $name->middle($shorten));
+
+        $name = Name::fromString(' Foo  Hubert      Cumberdale  Bar    ');
+        $expected = 'Hubert Cumberdale';
+        $this->assertEquals($expected, $name->middle());
+        $expected = 'H. C.';
+        $this->assertEquals($expected, $name->middle($shorten));
+    }
+
     public function testGetNonexistentMiddleFromArgsConstructor()
     {
         $shorten = true;
