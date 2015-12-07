@@ -79,7 +79,7 @@ abstract class AbstractName implements NameInterface
      */
     public function atIndex($index)
     {
-        if(array_key_exists($index, $this->nameStack) === false) {
+        if (array_key_exists($index, $this->nameStack) === false) {
             return null;
         }
 
@@ -120,11 +120,11 @@ abstract class AbstractName implements NameInterface
      */
     protected function slice($from, $to)
     {
-        if($this->stackCount() < ($to - $from)) {
+        if ($this->stackCount() < ($to - $from)) {
             return null;
         }
 
-        if($from < 0 || $from >= $this->stackCount()) {
+        if ($from < 0 || $from >= $this->stackCount()) {
             return null;
         }
 

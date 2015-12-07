@@ -37,31 +37,24 @@ class Formatter implements FormatInterface
         switch (substr($string, 0, 2)) {
             case 'Fi':
                 return str_replace('First', $this->name->first(), $string);
-                break;
 
             case 'F.':
                 return str_replace('F.', $this->name->first($short), $string);
-                break;
 
             case 'La':
                 return str_replace('Last', $this->name->last(), $string);
-                break;
 
             case 'L.':
                 return str_replace('L.', $this->name->last($short), $string);
-                break;
 
             case 'Mi':
                 return str_replace('Middle', $this->name->middle(), $string);
-                break;
 
             case 'M.':
                 return str_replace('M.', $this->name->middle($short), $string);
-                break;
 
             default:
                 return $string;
-                break;
         }
     }
 }

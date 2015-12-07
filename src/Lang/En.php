@@ -30,11 +30,11 @@ class En extends AbstractName
     public function middle($short = false)
     {
         $middles = $this->slice(1, $this->stackCount() - 1);
-        if($middles === null) {
+        if ($middles === null) {
             return null;
         }
 
-        if($short === true) {
+        if ($short === true) {
             array_walk($middles, function(&$part) {
                 $part = $this->shorten($part);
             });
@@ -48,7 +48,7 @@ class En extends AbstractName
      */
     public function last($short = false)
     {
-        if($this->stackCount() < 2) {
+        if ($this->stackCount() < 2) {
             return null;
         }
 
