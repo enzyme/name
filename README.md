@@ -61,7 +61,7 @@ echo $fmt->like('First M. Last');
 
 # Formatter Options
 
-The follow examples use the name `Hubert Alfred Smith Cumberdale`
+The following examples use the name `Hubert Alfred Smith Cumberdale`
 
 Marker | Returned Name
 -------|--------------
