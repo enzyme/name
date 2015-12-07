@@ -22,7 +22,7 @@
    timeoutForSmallTests="1"
    timeoutForMediumTests="10"
    timeoutForLargeTests="60"
-   verbose="false">
+   verbose="true">
    <logging>
       <log type="coverage-clover" target="build/logs/clover.xml"/>
    </logging>
