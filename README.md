@@ -1,4 +1,5 @@
-# Name
+<img src="https://cloud.githubusercontent.com/assets/2805249/11685005/7af1aa74-9ec1-11e5-924c-711068f7adde.png" width="200">
+
 [![Build Status](https://travis-ci.org/enzyme/name.svg?branch=master)](https://travis-ci.org/enzyme/name)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/enzyme/name/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/enzyme/name/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/enzyme/name/badge.svg?branch=master&service=github)](https://coveralls.io/github/enzyme/name?branch=master)
