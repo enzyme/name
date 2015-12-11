@@ -245,10 +245,10 @@ class Simple
     {
         $name = new static();
 
-         static::tryExtractPrefix($name, $segments);
-         static::tryExtractExtended($name, $segments);
-         static::tryExtractStandard($name, $segments);
-         static::tryExtractSimple($name, $segments);
+        static::tryExtractPrefix($name, $segments);
+        static::tryExtractExtended($name, $segments);
+        static::tryExtractStandard($name, $segments);
+        static::tryExtractSimple($name, $segments);
 
         return $name;
     }
