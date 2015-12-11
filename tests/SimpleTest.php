@@ -99,6 +99,14 @@ class SimpleTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \Enzyme\Name\NameException
      */
+    public function testSimpleNameThrowsExceptionOnZeroArgsData()
+    {
+        $name = Simple::fromArgs();
+    }
+
+    /**
+     * @expectedException \Enzyme\Name\NameException
+     */
     public function testSimpleNameThrowsExceptionOnIncorrectStringData()
     {
         $name = Simple::fromString('');
