@@ -18,6 +18,18 @@ class FormatTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $fmt->like('F.'));
     }
 
+    public function testFormatQuickfire()
+    {
+        $first = 'Hubert';
+        $name = Simple::fromString($first);
+
+        $expected = 'Hubert';
+        $this->assertEquals($expected, Format::nameLike($name, 'First'));
+
+        $expected = 'H.';
+        $this->assertEquals($expected, Format::nameLike($name, 'F.'));
+    }
+
     public function testFirstAndLastNameFormat()
     {
         $string = 'Hubert Cumberdale';
@@ -53,6 +65,25 @@ class FormatTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $fmt->like('First M. L.'));
 
         $expected = 'Cumberdale, H. A.';
+        $this->assertEquals($expected, $fmt->like('Last, F. M.'));
+    }
+
+    public function testFirstMultiMiddleAndLastNameFormat()
+    {
+        $string = 'Hubert Alfredo Smith Cumberdale';
+        $name = Simple::fromString($string);
+        $fmt = new Format($name);
+
+        $expected = 'Hubert Alfredo Smith Cumberdale';
+        $this->assertEquals($expected, $fmt->like('First Middle Last'));
+
+        $expected = 'H. A. S. C.';
+        $this->assertEquals($expected, $fmt->like('F. M. L.'));
+
+        $expected = 'Hubert A. S. C.';
+        $this->assertEquals($expected, $fmt->like('First M. L.'));
+
+        $expected = 'Cumberdale, H. A. S.';
         $this->assertEquals($expected, $fmt->like('Last, F. M.'));
     }
 

@@ -13,6 +13,12 @@ class Format
         $this->name = $name;
     }
 
+    public static function nameLike(Simple $name, $format_string)
+    {
+        $fmt = new static($name);
+        return $fmt->like($format_string);
+    }
+
     public function like($format_string)
     {
         $string = S::create($format_string)->collapseWhitespace();
