@@ -6,11 +6,42 @@ use Stringy\Stringy as S;
 
 class Simple
 {
+    /**
+     * The name prefix.
+     *
+     * @var Part
+     */
     protected $prefix;
+
+    /**
+     * The first name.
+     *
+     * @var Part
+     */
     protected $first;
+
+    /**
+     * The middle name.
+     *
+     * @var Part
+     */
     protected $middle;
+
+    /**
+     * The last name.
+     *
+     * @var Part
+     */
     protected $last;
 
+    /**
+     * Create a new name given the specified parts.
+     *
+     * @param Part|null $prefix The prefix
+     * @param Part|null $first  The first name.
+     * @param Part|null $middle The middle name.
+     * @param Part|null $last   The last name.
+     */
     protected function __construct(
         Part $prefix = null,
         Part $first = null,
@@ -23,6 +54,13 @@ class Simple
         $this->last = $last;
     }
 
+    /**
+     * Try to intelligently create a name from the given string.
+     *
+     * @param string $name The name.
+     *
+     * @return Simple
+     */
     public static function fromString($name)
     {
         $name = S::create($name)->collapseWhitespace();
@@ -41,6 +79,11 @@ class Simple
         return static::processName($segments);
     }
 
+    /**
+     * Build a name from the given function arguments.
+     *
+     * @return Simple
+     */
     public static function fromArgs()
     {
         $num_args = func_num_args();
@@ -85,11 +128,23 @@ class Simple
         }
     }
 
+    /**
+     * Return a fresh instance of Simple.
+     *
+     * @return Simple
+     */
     public static function strict()
     {
         return new static();
     }
 
+    /**
+     * Set the prefix for this name
+     *
+     * @param Part $prefix The prefix.
+     *
+     * @return void
+     */
     public function prefix(Part $prefix)
     {
         $this->prefix = $prefix;
@@ -97,6 +152,13 @@ class Simple
         return $this;
     }
 
+    /**
+     * Set the first part of this name
+     *
+     * @param Part $first The first part.
+     *
+     * @return void
+     */
     public function first(Part $first)
     {
         $this->first = $first;
@@ -104,6 +166,13 @@ class Simple
         return $this;
     }
 
+    /**
+     * Set the middle part of this name
+     *
+     * @param Part $middle The middle part.
+     *
+     * @return void
+     */
     public function middle(Part $middle)
     {
         $this->middle = $middle;
@@ -111,6 +180,13 @@ class Simple
         return $this;
     }
 
+    /**
+     * Set the last part of this name
+     *
+     * @param Part $last The last part.
+     *
+     * @return void
+     */
     public function last(Part $last)
     {
         $this->last = $last;
@@ -118,26 +194,53 @@ class Simple
         return $this;
     }
 
+    /**
+     * Get the prefix for this name.
+     *
+     * @return Part
+     */
     public function getPrefix()
     {
         return $this->prefix;
     }
 
+    /**
+     * Get the first part of this name.
+     *
+     * @return Part
+     */
     public function getFirst()
     {
         return $this->first;
     }
 
+    /**
+     * Get the middle part of this name.
+     *
+     * @return Part
+     */
     public function getMiddle()
     {
         return $this->middle;
     }
 
+    /**
+     * Get the last part of this name.
+     *
+     * @return Part
+     */
     public function getLast()
     {
         return $this->last;
     }
 
+    /**
+     * Process this name given the segments.
+     *
+     * @param array $segments The name segments.
+     *
+     * @return Simple
+     */
     protected static function processName($segments)
     {
         $name = new static();
@@ -150,6 +253,14 @@ class Simple
         return $name;
     }
 
+    /**
+     * Try and extract simply a first name.
+     *
+     * @param Simple $name     The name to process.
+     * @param array &$segments The given segments.
+     *
+     * @return void
+     */
     protected static function tryExtractSimple($name, &$segments)
     {
         if (count($segments) > 0 && count($segments) < 2) {
@@ -159,6 +270,14 @@ class Simple
         }
     }
 
+    /**
+     * Try and extract simply a first and last name.
+     *
+     * @param Simple $name     The name to process.
+     * @param array &$segments The given segments.
+     *
+     * @return void
+     */
     protected static function tryExtractStandard($name, &$segments)
     {
         if (count($segments) > 0 && count($segments) === 2) {
@@ -171,6 +290,14 @@ class Simple
         }
     }
 
+    /**
+     * Try and extract a first, middle and last name.
+     *
+     * @param Simple $name     The name to process.
+     * @param array &$segments The given segments.
+     *
+     * @return void
+     */
     protected static function tryExtractExtended($name, &$segments)
     {
         if (count($segments) > 2) {
@@ -187,6 +314,14 @@ class Simple
         }
     }
 
+    /**
+     * Try and extract the prefix for this name.
+     *
+     * @param Simple $name     The name to process.
+     * @param array &$segments The given segments.
+     *
+     * @return void
+     */
     protected static function tryExtractPrefix($name, &$segments)
     {
         if (stripos($segments[0], '.') !== false) {

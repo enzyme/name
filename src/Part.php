@@ -6,8 +6,18 @@ use Stringy\Stringy as S;
 
 class Part
 {
+    /**
+     * A store of the name segments.
+     *
+     * @var array
+     */
     protected $segments = [];
 
+    /**
+     * Creates a new part given the string part.
+     *
+     * @param string $string The name part.
+     */
     public function __construct($string)
     {
         $parts = S::create($string)->split(' ');
@@ -18,11 +28,21 @@ class Part
         $this->segments = $segments;
     }
 
+    /**
+     * Returns the long (original) part of this name.
+     *
+     * @return string
+     */
     public function long()
     {
         return implode(' ', $this->segments);
     }
 
+    /**
+     * Returns the shortened version of this name.
+     *
+     * @return string
+     */
     public function short()
     {
         $shortened_parts = [];
