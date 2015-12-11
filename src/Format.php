@@ -29,7 +29,7 @@ class Format
      * @param Simple $name          The name to format.
      * @param string $format_string The format string.
      *
-     * @return string
+     * @return S
      */
     public static function nameLike(Simple $name, $format_string)
     {
@@ -42,7 +42,7 @@ class Format
      *
      * @param string $format_string The format string.
      *
-     * @return string
+     * @return S
      */
     public function like($format_string)
     {
@@ -62,7 +62,7 @@ class Format
      *
      * @param string $part The part.
      *
-     * @return string
+     * @return S
      */
     protected function format($part)
     {
@@ -101,7 +101,7 @@ class Format
     /**
      * Tries to extract the long version of the given name from this part.
      *
-     * @param string $part The part to process.
+     * @param Part $part The part to process.
      *
      * @return string
      */
@@ -115,7 +115,7 @@ class Format
     /**
      * Tries to extract the short version of the given name from this part.
      *
-     * @param string $part The part to process.
+     * @param Part $part The part to process.
      *
      * @return string
      */
