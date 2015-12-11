@@ -6,6 +6,10 @@
 
 Name manipulation library for PHP.
 
+# What is it?
+
+If you website has a form or accepts user data in the form of *First Name*, *Last Name* and optionally *Middle* or *Prefix (Dr., Mrs.)* and you then want to format this name, this package is for you.
+
 # Installation
 
 ```bash
@@ -17,59 +21,75 @@ composer require enzyme/name
 #### Standard first and last names.
 
 ```php
-use Enzyme\Name\Lang\En as Name;
+use Enzyme\Name\Simple;
 
-$name = Name::fromString('Hubert Cumberdale');
-
-echo $name->first(); // Will echo 'Hubert'.
-echo $name->last(); // Will echo 'Cumberdale'.
+$name = Simple::fromString('Hubert Cumberdale');
+echo $name->getFirst(); // Hubert
+echo $name->getLast(); // Hubert
 ```
 
 #### Formatted first and last names.
 
 ```php
-use Enzyme\Name\Formatter;
-use Enzyme\Name\Lang\En as Name;
+use Enzyme\Name\Simple;
+use Enzyme\Name\Format;
 
-$name = Name::fromString('Hubert Cumberdale');
+$name = Simple::fromString('Hubert Cumberdale');
+$fmt = Format($name);
 
-$fmt = new Formatter($name);
-echo $fmt->like('First L.'); // Will echo 'Hubert C.'
-echo $fmt->like('Last, F.'); // Will echo 'Cumberdale, H.'
+echo $fmt->like('First'); // Hubert
+echo $fmt->like('First L.'); // Hubert C.
+echo $fmt->like('Last, F.'); // Cumberdale, H.
 
-// OR...
-
-// Will echo 'Hubert C.'
-echo Formatter::nameLike($name, 'First L.');
+// Quickfire option.
+echo Format::nameLike($name, 'First L.'); // Hubert C.
 ```
 
-#### Formatted full names (with middle).
+#### Formatted full names (with middle/prefix).
 
 ```php
-use Enzyme\Name\Formatter;
-use Enzyme\Name\Lang\En as Name;
+use Enzyme\Name\Simple;
+use Enzyme\Name\Format;
 
-$name = Name::fromString('Hubert Alfred Cumberdale');
-$fmt = new Formatter($name);
+$name = Simple::fromString('Dr. Hubert Alberto Cumberdale');
 
-// Will echo 'Hubert A. Cumberdale'.
-echo $fmt->like('First M. Last');
+echo Format::nameLike($name, 'First M. Last'); // Hubert A. Cumberdale
+echo Format::nameLike($name, 'P. First M. Last'); // Dr. Hubert A. Cumberdale
+echo Format::nameLike($name, 'P. Last, F. M.'); // Dr. Cumberdale, H. A.
 ```
 
 # Name options
 
-`$name->first();` Will return the first name.
+`Simple` exposes the follow accessors which return `Part` instances.
 
-`$name->last();` Will return the last name.
+`$name->getPrefix();`
+`$name->getFirst();`
+`$name->getMiddle();`
+`$name->getLast();`
 
-`$name->middle();` Will return the the middle name(s).
+Each `Part` has two options:
+
+`$part->long()` Returns the long version of the name, eg: Hubert
+`$part->short()` Returns the short version of the name, eg: H.
+
+You can build a new name in 3 ways:
+
+`Simple::fromString(...)` Simply pass in a string and it will 'intelligently' try and parse the name out from it.
+
+`Simple::fromArgs(...)` Simply pass in arguments and it will try and build the full name from them. The name is build based on the number of arguments passed in, so 1 argument equals to the `first` name, 2 -> `first last`, 3 -> `first middle last` and 4 -> `prefix first middle last`. 
+
+So to create the name `Hubert Cumberdale` using the `fromArgs` constructor, it would look like `Simple::fromArgs('Hubert', 'Cumberdale');`.
+
+The last option give you the most control, `Simple::strict()`. It simply returns a new `Simple` object which you then explicitly build up using the setters: `$simple->prefix(...);`, `$simple->first(...);`, `$simple->middle(...);` and `$simple->last(...);`. Each setter can be optionally called to build names of different configurations.
 
 # Formatter Options
 
-The following examples use the name `Hubert Alfred Smith Cumberdale`
+The following examples use the name `Mr. Hubert Alfred Smith Cumberdale`
 
 Marker | Returned Name
 -------|--------------
+Prefix | Mr.
+P.     | Mr.
 First  | Hubert
 F.     | H.
 Last   | Cumberdale
