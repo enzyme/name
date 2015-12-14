@@ -8,7 +8,7 @@ Name manipulation library for PHP.
 
 # What is it?
 
-If your website accepts user data in the form of *First Name*, *Last Name* and optionally *Middle* and/or *Prefix (Dr., Mrs.)*, then you need to format that data - this package is for you.
+If your website accepts user data in the form of *First Name*, *Last Name* and optionally *Middle* and/or *Prefix (Dr., Mrs.)* and then you would like to format the data - this package is for you.
 
 # Installation
 
