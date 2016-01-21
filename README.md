@@ -25,7 +25,7 @@ use Enzyme\Name\Simple;
 
 $name = Simple::fromString('Hubert Cumberdale');
 echo $name->getFirst(); // Hubert
-echo $name->getLast(); // Hubert
+echo $name->getLast(); // Cumberdale
 ```
 
 #### Formatted first and last names.
@@ -76,7 +76,7 @@ You can build a new name in 3 ways:
 
 `Simple::fromString(...)` Simply pass in a string and it will 'intelligently' try and parse the name out from it.
 
-`Simple::fromArgs(...)` Simply pass in arguments and it will try and build the full name from them. The name is build based on the number of arguments passed in, so 1 argument equals to the `first` name, 2 -> `first last`, 3 -> `first middle last` and 4 -> `prefix first middle last`. 
+`Simple::fromArgs(...)` Simply pass in arguments and it will try and build the full name from them. The name is build based on the number of arguments passed in, so 1 argument equals to the `first` name, 2 -> `first last`, 3 -> `first middle last` and 4 -> `prefix first middle last`.
 
 So to create the name `Hubert Cumberdale` using the `fromArgs` constructor, it would look like `Simple::fromArgs('Hubert', 'Cumberdale');`.
 
